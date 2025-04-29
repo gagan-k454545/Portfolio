@@ -1,0 +1,453 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 210 40% 96.1%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 262.1 83.3% 57.8%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 262.1 83.3% 57.8%;
+  --radius: 0.5rem;
+}
+
+.dark {
+  --background: 222.2 84% 4.9%;
+  --foreground: 210 40% 98%;
+  --card: 222.2 84% 4.9%;
+  --card-foreground: 210 40% 98%;
+  --popover: 222.2 84% 4.9%;
+  --popover-foreground: 210 40% 98%;
+  --primary: 262.1 83.3% 57.8%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 217.2 32.6% 17.5%;
+  --secondary-foreground: 210 40% 98%;
+  --muted: 217.2 32.6% 17.5%;
+  --muted-foreground: 215 20.2% 65.1%;
+  --accent: 217.2 32.6% 17.5%;
+  --accent-foreground: 210 40% 98%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 210 40% 98%;
+  --border: 217.2 32.6% 17.5%;
+  --input: 217.2 32.6% 17.5%;
+  --ring: 262.1 83.3% 57.8%;
+}
+
+body {
+  @apply bg-background text-foreground;
+  overscroll-behavior: none; /* Prevent bounce effect on mobile */
+  touch-action: manipulation; /* Disable double-tap zoom */
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+}
+
+/* Custom scrollbar - only on desktop */
+@media (min-width: 768px) {
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #0a0f1a;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #2d3748;
+    border-radius: 5px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #4a5568;
+  }
+}
+
+/* Gradient text animation - only on desktop */
+@media (min-width: 768px) {
+  @keyframes gradient-shift {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+
+  .animate-gradient {
+    background-size: 200% 200%;
+    animation: gradient-shift 5s ease infinite;
+  }
+}
+
+/* Disable animations on mobile */
+@media (max-width: 767px) {
+  .animate-gradient {
+    background-size: 100% 100%;
+    animation: none;
+  }
+}
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 80px; /* Account for fixed header */
+}
+
+/* 3D Animation Styles - only on desktop */
+@media (min-width: 768px) {
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .rotate-y-5 {
+    transform: rotateY(5deg);
+  }
+
+  .translate-z-20 {
+    transform: translateZ(20px);
+  }
+
+  @keyframes float {
+    0% {
+      transform: translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+    50% {
+      transform: translateY(-20px) translateZ(50px) rotateX(10deg) rotateY(10deg);
+    }
+    100% {
+      transform: translateY(0px) translateZ(0px) rotateX(0deg) rotateY(0deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+}
+
+/* Mobile optimizations */
+@media (max-width: 767px) {
+  .perspective-1000 {
+    perspective: none;
+  }
+
+  .animate-float,
+  .animate-pulse-slow,
+  .animate-bounce {
+    animation: none !important;
+  }
+
+  .card-3d {
+    transform-style: flat !important;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-5px) !important;
+  }
+
+  /* Optimize background elements */
+  .fixed.inset-0 {
+    display: none;
+  }
+
+  /* Improve tap targets */
+  button,
+  a {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Faster transitions */
+  * {
+    transition-duration: 100ms !important;
+  }
+}
+
+/* Improved mobile responsiveness */
+@media (max-width: 767px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  h1 {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+  }
+
+  h2 {
+    font-size: 1.5rem !important;
+  }
+
+  h3 {
+    font-size: 1.25rem !important;
+  }
+
+  .space-y-8 > * {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .py-20 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
+  .py-12 {
+    padding-top: 1.5rem;
+    padding-bottom: 1.5rem;
+  }
+
+  .min-h-[90vh] {
+    min-height: auto;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+
+  .grid {
+    gap: 1.5rem;
+  }
+
+  .flex-wrap {
+    justify-content: center;
+  }
+
+  /* Fix text sizing */
+  .text-6xl {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+  }
+
+  .text-3xl {
+    font-size: 1.375rem !important;
+  }
+
+  .text-2xl {
+    font-size: 1.25rem !important;
+  }
+
+  .text-xl {
+    font-size: 1.125rem !important;
+  }
+
+  /* Optimize spacing */
+  .p-8 {
+    padding: 1rem;
+  }
+
+  .py-6 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+
+  .px-8 {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+
+  .gap-12 {
+    gap: 1rem;
+  }
+
+  .gap-8 {
+    gap: 0.75rem;
+  }
+
+  .space-y-32 > * + * {
+    margin-top: 2rem;
+  }
+
+  .mb-16 {
+    margin-bottom: 1.5rem;
+  }
+}
+
+/* Better touch interactions for mobile */
+@media (hover: none) {
+  .hover\:scale-105:hover,
+  .hover\:scale-110:hover,
+  .group-hover\:scale-105,
+  .group-hover\:translate-x-1 {
+    transform: none !important;
+  }
+
+  .card-3d:active {
+    transform: translateY(-5px);
+  }
+
+  a:active,
+  button:active {
+    opacity: 0.8;
+  }
+
+  /* Active state feedback */
+  .bg-gradient-to-r:active {
+    opacity: 0.9;
+  }
+}
+
+/* Loading animations for images */
+img {
+  transition: opacity 0.2s ease;
+}
+
+img.loading {
+  opacity: 0;
+}
+
+img.loaded {
+  opacity: 1;
+}
+
+/* 3D card hover effect - desktop only */
+@media (min-width: 768px) {
+  .card-3d {
+    transition: transform 0.5s ease;
+    transform-style: preserve-3d;
+  }
+
+  .card-3d:hover {
+    transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+  }
+}
+
+/* Simplified transitions for all elements */
+* {
+  transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow,
+    transform, filter, backdrop-filter;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+/* Content visibility optimization */
+.py-20 {
+  content-visibility: auto;
+  contain-intrinsic-size: 0 500px;
+}
+
+/* Tap highlight for mobile */
+a,
+button {
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Improved button feedback on mobile */
+@media (max-width: 767px) {
+  button:active,
+  a:active {
+    transform: scale(0.98);
+  }
+}
+
+/* Custom animations for intersection observer */
+.animate-in {
+  animation-duration: 700ms;
+  animation-fill-mode: both;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-down {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in-left {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fade-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes zoom-in {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.fade-in {
+  animation-name: fade-in;
+}
+
+.fade-in-up {
+  animation-name: fade-in-up;
+}
+
+.fade-in-down {
+  animation-name: fade-in-down;
+}
+
+.fade-in-left {
+  animation-name: fade-in-left;
+}
+
+.fade-in-right {
+  animation-name: fade-in-right;
+}
+
+.zoom-in {
+  animation-name: zoom-in;
+}
