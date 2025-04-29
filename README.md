@@ -95,7 +95,7 @@ The website includes a resume section where visitors can:
 
 ## 🚀 Deployment
 
-This project is deployed on Vercel. You can view the live site at [https://v0-gagank-7uzht1.vercel.app/](https://v0-gagank-7uzht1.vercel.app/)
+This project is deployed on Vercel. You can view the live site at [https://v0-gagank-7uzht1.vercel.app/](https://v0-protfoliogagan-six.vercel.app/)
 
 ## 🔧 Customization
 
